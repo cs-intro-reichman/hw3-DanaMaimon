@@ -27,23 +27,72 @@ public class Anagram {
 	}  
 
 	// Returns true if the two given strings are anagrams, false otherwise.
-	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+	public static boolean isAnagram(String str1, String str2) 
+	{
+		String new1 = preProcess(str1);
+		String new2 = preProcess(str2);
+		new1 = new1.replace(" ", "");
+    	new2 = new2.replace(" ", "");
+		if (new1.length() != new2.length())
+		{
+			return false;
+		}
+		for (int i = 0; i < new1.length(); i++)
+		{
+			char c = new1.charAt(i);
+			boolean flag = false;
+			for (int j = 0; j < new2.length(); j++)
+			{
+				if (c == new2.charAt(j)) 
+				{
+					flag = true;
+					new2 = removeCharAt(new2, j);
+					break;
+				}
+			}
+			if (flag == false) 
+			{
+				return flag;
+			}
+		}
+		return true;
+	}
+
+	public static String removeCharAt (String s, int i)
+	{
+		return s.substring(0, i) + s.substring(i + 1);
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
-	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+	public static String preProcess(String str) 
+	{
+		String newStr = "";
+		str = str.toLowerCase();
+		for (int i = 0; i < str.length(); i ++)
+		{
+			char c = str.charAt(i);
+			if ((c >= 'a' && c <= 'z') || c == ' ') 
+			{
+				newStr += c;	
+			}
+		}
+		return newStr;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
-	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+	public static String randomAnagram(String str) 
+	{
+		int index;
+		String newStr = "";
+		while (str.length() != 0) 
+		{
+			index = (int)(Math.random() * str.length());
+			newStr += str.charAt(index);
+			str = removeCharAt(str, index);
+		}
+		return newStr;
 	}
 }
