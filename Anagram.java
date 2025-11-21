@@ -74,9 +74,10 @@ public class Anagram {
 		str = str.toLowerCase();
 		for (int i = 0; i < str.length(); i ++)
 		{
-			if (Character.isLetter(str.charAt(i))) 
+			char c = str.charAt(i);
+			if (c >= 'a' && c <= 'z') 
 			{
-				newStr += str.charAt(i);	
+				newStr += c;	
 			}
 		}
 		return newStr;
