@@ -31,25 +31,23 @@ public class Anagram {
 	{
 		String new1 = preProcess(str1);
 		String new2 = preProcess(str2);
-		boolean flag = true;
+		new1 = new1.replace(" ", "");
+    	new2 = new2.replace(" ", "");
 		if (new1.length() != new2.length())
 		{
-			flag = false;
-			return flag;
+			return false;
 		}
 		for (int i = 0; i < new1.length(); i++)
 		{
+			char c = new1.charAt(i);
+			boolean flag = false;
 			for (int j = 0; j < new2.length(); j++)
 			{
-				if (new1.charAt(i) == new2.charAt(j)) 
+				if (c == new2.charAt(j)) 
 				{
 					flag = true;
 					new2 = removeCharAt(new2, j);
 					break;
-				}
-				else 
-				{
-					flag = false;
 				}
 			}
 			if (flag == false) 
@@ -57,7 +55,7 @@ public class Anagram {
 				return flag;
 			}
 		}
-		return flag;
+		return true;
 	}
 
 	public static String removeCharAt (String s, int i)
